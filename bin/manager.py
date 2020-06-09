@@ -11,6 +11,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.
 from configs.postgres import DB
 from configs.redis import RedisWorker, RedisServer
 from models import *
+from routes.index import index_blueprint
 
 
 def create_app():
@@ -26,10 +27,17 @@ def create_app():
     return server
 
 
+# Initialize application server
 app = create_app()
+# Register blueprint
+app.register_blueprint(index_blueprint)
+
+# Define migration folder
 MIGRATION_DIR = os.path.join("migrations")
 migrate = Migrate(app, DB, directory=MIGRATION_DIR)
 manager = Manager(app)
+
+# Add commands into manager
 manager.add_command("db", MigrateCommand)
 manager.add_command("runserver", Server(port=os.getenv("PORT"), host=os.getenv("HOST")))
 manager.add_command("redis-worker", RedisWorker())

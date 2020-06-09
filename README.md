@@ -1,3 +1,8 @@
+# FlaskArchitecture
+Define main structure for flask server with models, presistence, managers and routes layers.  
+Also define configs for server like Development, Staging, Production and Test.  
+Contain ORM database with migrations, redis worker with redis server and example for env and blueprints to register routes.  
+
 ## Install requirements
 ```
 pip install -r requirements.txt

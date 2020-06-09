@@ -127,3 +127,13 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# IDE
+.idea/
+
+# env
+.env
+!.env.example
+
+# redis
+dump.rdb
